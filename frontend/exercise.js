@@ -1,1 +1,3 @@
-console.log('Good luck! You can do it!');
+document.addEventListener('DOMContentLoaded', function(){
+    templateRender('test-partial', {hello:'there'});
+});
