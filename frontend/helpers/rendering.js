@@ -1,14 +1,19 @@
 'use-strict'
 //fetches an html template, interpolates it with data an adds it to the DOM
-var templateRender = (function (pName,data) {
-    function getPartial(pName,data) {
+var templateRender = (function () {
+    function getPartial(pName,parent,data, cb) {
         var request = new XMLHttpRequest();
         request.open('get', '/partials/' + pName, true);
         request.onload = function (e) {
-            var html = interpolate(request.response, data);
+            var html;
+            if (data)
+                html = interpolate(request.response, data);
+            else
+                html = request.response;
             var el = document.createElement('div');
             el.innerHTML = html;
-            document.body.appendChild(el);
+            document.getElementById(parent).appendChild(el);
+            if (cb) cb();
         };
         request.onerror = function (e) {
             console.error(e);
