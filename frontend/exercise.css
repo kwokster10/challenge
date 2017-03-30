@@ -1,1 +1,5 @@
 /* Styles */
+#contents tr{
+    cursor: pointer;
+}
+

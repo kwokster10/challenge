@@ -17,12 +17,16 @@ document.addEventListener('DOMContentLoaded', function () {
     loadScripts([
         'csUtils.js',
         'helpers/rendering.js',
-        'behaviors/table.js'
+        'helpers/filters.js',
+        'behaviors/table.js',
+        'behaviors/button.js'
     ], function (modules) {
         //external functions are now available as encapsulated 'modules', no globals!
         modules.render('main.html', 'app', null, function () {
             //register behaviors
             modules.tableBehavior(document.getElementById('contents'));
+            modules.buttonBehavior(document.getElementById('filter-btn'));
+            //We can scale by attaching additional behavior scripts to dom elements
             
         });
     });
