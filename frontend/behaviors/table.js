@@ -85,7 +85,7 @@
                             //console.log(item._expiration_date);
                             if (item._expiration_date < currentDate)
                                 return 'Expired';
-                            if (item._expiration_date === currentDate)
+                            if (item._expiration_date.getTime() === currentDate.getTime())
                                 return 'Expiring today';
                             return;
                         });

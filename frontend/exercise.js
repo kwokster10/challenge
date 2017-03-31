@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     //bootleg script loader
+    //TODO: refactor to use async loading
     function loadScripts(scripts, cb) {
         var counter = scripts.length - 1;
         var modules = {};
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'behaviors/button.js'
     ], function (modules) {
         //external functions are now available as encapsulated 'modules', no globals!
-        modules.render('main.html', 'app', null, function () {
+        var thisDate = modules.converters.toLongDate(new Date(Date.now()));
+        modules.render('main.html', 'app',{thisDate: thisDate} , function () {
             //register behaviors
             modules.tableBehavior(document.getElementById('contents'));
             modules.buttonBehavior(document.getElementById('filter-btn'));

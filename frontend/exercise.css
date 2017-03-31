@@ -1,4 +1,7 @@
 /* Styles */
+.container{
+  width: 920px !important;
+}
 #contents tr{
     cursor: pointer;
 }
