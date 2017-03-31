@@ -1,25 +1,26 @@
 <div>
-    
+
     <div class="panel panel-default">
         <div class="panel-body">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <div class="clearfix">
-                        <button class="btn btn-primary pull-right" id="filter-btn">
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <div class="clearfix">
+                            <button class="btn btn-primary pull-right" id="filter-btn">
                             <i class="glyphicon glyphicon-filter"></i>
                             Show expiring today
                         </button>
-                    </div>
-                    <hr>
-                    <th>Name</th>
-                    <th>Expiration</th>
-                </thead>
-                <tbody id="contents">
-                </tbody>
-                <tfoot>
-                    <h4 class="text-center" id="if-none" hidden>There are no items to display</h4>
-                </tfoot>
-            </table>
+                        </div>
+                        <hr>
+                        <th><i class="glyphicon glyphicon-user"></i> Name</th>
+                        <th><i class="glyphicon glyphicon-time"></i> Expiration</th>
+                    </thead>
+                    <tbody id="contents">
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="text-center" id="if-none" hidden>There are no items to display</h4>
         </div>
     </div>
 </div>

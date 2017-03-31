@@ -2,8 +2,20 @@
 #contents tr{
     cursor: pointer;
 }
+#app{
+  /*padding-top:30px;*/
+}
 tbody td{
-    letter-spacing: .2em;
+    letter-spacing: .1em;
+}
+.expanded div{
+  padding-top:5px;
+  padding-bottom: 5px;
+  background: lightblue;
+}
+.expanded span{
+  background: white;
+  padding: 3px;
 }
 /* Spinner styles */
 .spinner {
