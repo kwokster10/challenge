@@ -1,19 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     //bootleg script loader
-    //TODO: refactor to use async loading
     function loadScripts(scripts, cb) {
-        var counter = scripts.length - 1;
+        var request = new XMLHttpRequest();
         var modules = {};
-        while (counter >= 0) {
-            var request = new XMLHttpRequest();
-            request.open('get', '/' + scripts[counter], false);
-            request.send();
+        makeRequest();
+        request.onload = function(){
             var content = request.response;
             eval(content)(modules);//register the function as 'module'
-            counter--;
+            if (scripts.length)
+                makeRequest();
+            else
+                cb(modules);
         }
-        cb(modules);
+        request.onerror = function(e){
+            console.error(e);
+        }
+        function makeRequest(){
+            var script = scripts.pop();
+            request.open('get', '/' + script, true);
+            request.send();
+        }
     }
     loadScripts([
         'csUtils.js',

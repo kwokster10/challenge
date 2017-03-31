@@ -1,7 +1,7 @@
 (function () {
   return function (modules) {
-    baseUrl = 'https://dea.staging.credsimple.com',
-    path = '/v1/clients_providers/'
+    var baseUrl = 'https://dea.staging.credsimple.com',
+    path = '/v1/clients_providers/',
     token = '3ad6aef59ee542ec881c5bc6593ba9c3',
     id = 20;
     modules.api = {
