@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'csUtils.js',
         'helpers/rendering.js',
         'helpers/filters.js',
+        'helpers/loader.js',
         'behaviors/table.js',
         'behaviors/button.js'
     ], function (modules) {

@@ -16,10 +16,14 @@
             }
         };
         var converters = {
+            toUtcDate:function(date){
+                return new Date(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate());
+            },
             toDate:function(arr,key){
+                var self = this;
                 return arr.map(function(item){
                     var newKey = '_' + key;
-                    var date = new Date(item[key]);
+                    var date = self.toUtcDate(new Date(item[key]));//convert to utc, strip out time
                     item[newKey] = date;
                     return item;
                 });

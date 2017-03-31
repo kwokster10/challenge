@@ -1,6 +1,7 @@
 (function () {
     return function (modules) {
         modules.tableBehavior = function (table) {
+            var currentDate = modules.converters.toUtcDate(new Date(Date.now()));
             var rows = null;
             var expandedRow = null;
             var selectedRow = null;
@@ -23,14 +24,14 @@
                     insertRow(expandedRow, clickedEl);
                 }
             }
-            function getElementIdx(el){
+            function getElementIdx(el) {
                 return Array.prototype.indexOf.call(rows, el);
             }
-            function toggleSelectedRow(el,idx){
-                if (idx === selectedRow){
+            function toggleSelectedRow(el, idx) {
+                if (idx === selectedRow) {
                     el.classList.remove('info');
                     selectedRow = null;
-                }else{
+                } else {
                     if (selectedRow !== null)
                         rows[selectedRow].classList.remove('info');
                     el.classList.add('info');
@@ -58,8 +59,6 @@
                     for (var i in data) {
                         var interpolated = modules.interpolate(template, data[i]);
                         var el = modules.appendChild(interpolated, 'contents', 'tr');
-                        if (data[i].isExpired)
-                            el.setAttribute('class', 'expired');
                         el.addEventListener('click', rowClicked);
                     }
                 })
@@ -69,24 +68,33 @@
             }
             //get the contents of the table
             modules.render('expanded-partial.html', null, null, function (template) {
-                expandedTemplate = template;
-                var filters = modules.filters;
-                var converters = modules.converters;
-                ///getting the data from the api
-                modules.api.getData(function (data) {
-                    //transforming the data to specifications
-                    cached = filters.limit(
-                        filters.sort(
-                            converters.toDate(data, 'expiration_date'), '_expiration_date'),
-                        30);
-                    //check to see which records are expired
-                    var currentDate = Date.now();
-                    cached = converters.addProp(cached, 'isExpired', function(item){
-                        return item._expiration_date < currentDate;
+                //show the spinner
+                modules.loader('app', function (done) {
+                    expandedTemplate = template;
+                    var filters = modules.filters;
+                    var converters = modules.converters;
+                    ///getting the data from the api
+                    modules.api.getData(function (data) {
+                        //transforming the data to specifications
+                        cached = filters.limit(
+                            filters.sort(
+                                converters.toDate(data, 'expiration_date'), '_expiration_date'),
+                            30);
+                        //check to see which records are expired
+                        cached = converters.addProp(cached, 'isExpired', function (item) {
+                            //console.log(item._expiration_date);
+                            if (item._expiration_date < currentDate)
+                                return 'Expired';
+                            if (item._expiration_date === currentDate)
+                                return 'Expiring today';
+                            return;
+                        });
+                        done(); //loading complete
+                        refreshData(cached);
+                        captureRows();
                     });
-                    refreshData(cached);
-                    captureRows();
-                });
+                })
+
             });
         }
     }
