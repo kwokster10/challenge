@@ -1,1 +1,145 @@
-/* Styles */
+/* General Styles */
+body {
+  font-family: 'Cabin', sans-serif;
+  margin: 0;
+}
+
+/* App Container Styles */
+.app-container {
+  margin-left: 10%;
+}
+@media screen and (max-width: 479px) {
+  .app-container {
+    margin-left: 0;
+  }
+  .header {
+    padding-left: 10px;
+  }
+}
+.header-top {
+  float: left;
+  margin-top: 10px;
+}
+.header-caps {
+  font-size: 50px;
+}
+
+/* Records Container Styles */
+.records-collection {
+  padding-left: 11%;
+  margin-top: 40px;
+}
+@media screen and (max-width: 479px) {
+  .records-collection {
+    padding-left: 0;
+  }
+}
+.expired-button-container {
+  position: relative;
+}
+.expired-button {
+  position: absolute;
+  top: -30px;
+  left: 170px;
+  width: 120px;
+  background-color: #c30101;
+  padding: 12px 12px 14px;
+  /* Rotate div */
+  -ms-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  /* Prevent from falling off page */
+  -moz-transform-origin: 5px;
+  -ms-transform-origin: 5px;
+  -o-transform-origin: 5px;
+  -webkit-transform-origin: 5px;
+  transform-origin: 5px;
+  font-size: 14px;
+  color: white;
+}
+@media screen and (max-width: 479px) {
+  .expired-button {
+    left: 180px;
+  }
+}
+
+/* Record Component Styles */
+.record-component {
+  width: 100%;
+  overflow: hidden;
+}
+.record-component:hover {
+  border: #c30101 1px solid;
+}
+.collapsed {
+  color: #c30101;
+}
+.numbered-bullet {
+  width: 100px;
+  float: left;
+  text-align: center;
+  font-size: 45px;
+  line-height: 2;
+  font-weight: bold;
+}
+@media screen and (max-width: 479px) {
+  .numbered-bullet {
+    width: 80px;
+  }
+}
+.details {
+  overflow: hidden;
+}
+.name {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.expired-state {
+  margin: 0;
+  font-size: 15px;
+  color: white;
+  width: 70px;
+  text-align: center;
+  padding: 3px;
+}
+.hide {
+  display: none;
+}
+.expired {
+  background-color: #c30101;
+}
+.active {
+  background-color: #093F4F;
+}
+.more-details {
+  color: #696969;
+}
+.details-info {
+  font-weight: 500;
+  padding-right: 7px;
+  color: black;
+}
+.expand {
+  position: relative;
+  float: right;
+}
+.expand:before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: -40px;
+  border-top: 10px solid #c30101;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.expand:after {
+  content: '';
+  position: absolute;
+  top: -31px;
+  left: -39px;
+  border-top: 9px solid white;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
